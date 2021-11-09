@@ -30,4 +30,22 @@ RSpec.describe Subscription, type: :model do
   #   describe '#' do
   #   end
   # end
+
+  describe 'factory bot creation' do
+    before(:all) do
+      @subscription = create(:subscription)
+    end
+
+    it 'is valid with attributes' do
+      expect(@subscription).to be_valid
+
+      expect(@subscription.title).to be_a String
+      expect(@subscription.price).to be_a Numeric
+      expect(@subscription.status).to be_a String
+      expect(@subscription.frequency).to be_a String
+
+      expect(@subscription.customer).to be_a Customer
+      expect(@subscription.tea).to be_a Tea
+    end
+  end
 end

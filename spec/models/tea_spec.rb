@@ -28,4 +28,19 @@ RSpec.describe Tea, type: :model do
   #   describe '#' do
   #   end
   # end
+
+  describe 'factory bot creation' do
+    before(:all) do
+      @tea = create(:tea)
+    end
+
+    it 'is valid with attributes' do
+      expect(@tea).to be_valid
+
+      expect(@tea.title).to be_a String
+      expect(@tea.description).to be_a String
+      expect(@tea.temperature).to be_a Numeric
+      expect(@tea.brew_time).to be_a Numeric
+    end
+  end
 end

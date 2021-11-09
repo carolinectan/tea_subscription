@@ -25,9 +25,24 @@ RSpec.describe Customer, type: :model do
   #   describe '.' do
   #   end
   # end
-  # 
+  #
   # describe 'instance methods' do
   #   describe '#' do
   #   end
   # end
+
+  describe 'factory bot creation' do
+    before(:all) do
+      @customer = create(:customer)
+    end
+
+    it 'is valid with attributes' do
+      expect(@customer).to be_valid
+
+      expect(@customer.first_name).to be_a String
+      expect(@customer.last_name).to be_a String
+      expect(@customer.email).to be_a String
+      expect(@customer.address).to be_a String
+    end
+  end
 end
