@@ -1,9 +1,6 @@
-# README
+# TEA SUBSCRIPTION
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+Tea Subscription is a Rails only API application, with endpoints to subscribe a customer to a tea subscription, to cancel a customer's tea subscription, and to see all of a customer's subscriptions (active and cancelled).
 
 ## Version
 - Rails 5.2.6
