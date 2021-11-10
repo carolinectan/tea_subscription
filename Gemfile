@@ -38,6 +38,7 @@ group :development, :test do
   gem 'jsonapi-serializer'
   gem 'pry'
   gem 'rspec-rails'
+  gem 'rubocop'
   gem 'shoulda-matchers', '~> 5.0'
 end
 

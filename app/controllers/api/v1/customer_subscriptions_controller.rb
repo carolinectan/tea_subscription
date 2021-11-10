@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Api::V1::CustomerSubscriptionsController < ApplicationController
   def index
     customer_subscriptions = Customer.find(params[:customer]).subscriptions
