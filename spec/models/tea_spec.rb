@@ -30,7 +30,7 @@ RSpec.describe Tea, type: :model do
   # end
 
   describe 'factory bot creation' do
-    before(:all) do
+    before(:each) do
       @tea = create(:tea)
     end
 

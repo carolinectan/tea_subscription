@@ -32,7 +32,7 @@ RSpec.describe Subscription, type: :model do
   # end
 
   describe 'factory bot creation' do
-    before(:all) do
+    before(:each) do
       @subscription = create(:subscription)
     end
 
