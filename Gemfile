@@ -33,6 +33,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'json'
+  gem 'jsonapi-serializer'
   gem 'pry'
   gem 'rspec-rails'
   gem 'shoulda-matchers', '~> 5.0'
