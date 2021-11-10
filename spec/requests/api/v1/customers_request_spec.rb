@@ -2,7 +2,9 @@ require 'rails_helper'
 
 describe 'customers api' do
   it 'sends a list of customers' do
+    Subscription.destroy_all
     Customer.destroy_all
+    Tea.destroy_all
 
     customer1 = create(:customer, first_name: 'Jacob',
                                   last_name: 'McGuire',
@@ -10,7 +12,8 @@ describe 'customers api' do
                                   address: '33 Lilah Ln, Denver, CO 80111')
     create_list(:customer, 2)
 
-    get '/api/v1/customers'
+    headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
+    get '/api/v1/customers', headers: headers
 
     expect(response).to be_successful
 
