@@ -87,12 +87,9 @@ GET http://localhost:3000/api/v1/customers/16
 }
 ```
 
-### Get All of a Customer's Subscriptions
-Pass the customer's ID in the params
-
+### Get One Customer's Subscriptions
 ```
-GET http://localhost:3000/api/v1/customer_subscriptions?customer=17
-params = { customer: 17 }
+GET http://localhost:3000/api/v1/customers/17/subscriptions
 headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
 ```
 
