@@ -32,3 +32,80 @@ bundle exec rspec
 ![Screen Shot 2021-11-08 at 6 59 19 PM](https://user-images.githubusercontent.com/81220681/140837165-3893bc9c-10cd-42df-90bf-a24fedea527f.png)
 
 ## Requests and Responses
+
+### Get All Customers
+```
+GET http://localhost:3000/api/v1/customers
+```
+
+```
+{
+    "data": [
+        {
+            "id": "16",
+            "type": "customer",
+            "attributes": {
+                "first_name": "Amanda",
+                "last_name": "Hodkiewicz",
+                "email": "gregg.leffler@powlowski-sanford.net",
+                "address": "242 Becky Path, Wisozkbury, Alabama 20334-7435"
+            }
+        },
+        {
+            "id": "17",
+            "type": "customer",
+            "attributes": {
+                "first_name": "Jacob",
+                "last_name": "Gottlieb",
+                "email": "lavera.stehr@shields-lubowitz.net",
+                "address": "89153 Booker Station, East Kendrahaven, Georgia 65402-3589"
+            }
+        },
+        ...
+    ]
+}
+```
+
+### Get All of a Customer's Subscriptions
+Pass the customer's ID in the params
+
+```
+GET http://localhost:3000/api/v1/customer_subscriptions?customer=17
+params = { customer: 17 }
+headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
+```
+
+```
+{
+    "data": [
+        {
+            "id": "2",
+            "type": "customer_subscriptions",
+            "attributes": {
+                "customer_id": 17,
+                "tea_id": 2,
+                "title": "infographic",
+                "price": "11.99",
+                "status": "active",
+                "frequency": "monthly",
+                "created_at": "2021-11-10T05:37:51.663Z",
+                "updated_at": "2021-11-10T05:37:51.663Z"
+            }
+        },
+        {
+            "id": "3",
+            "type": "customer_subscriptions",
+            "attributes": {
+                "customer_id": 17,
+                "tea_id": 3,
+                "title": "customer journey",
+                "price": "15.99",
+                "status": "active",
+                "frequency": "monthly",
+                "created_at": "2021-11-10T05:37:51.665Z",
+                "updated_at": "2021-11-10T05:37:51.665Z"
+            }
+        }
+    ]
+}
+```
