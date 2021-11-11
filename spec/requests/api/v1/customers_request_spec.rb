@@ -41,4 +41,43 @@ describe 'customers api' do
     expect(json[:data].first[:attributes][:address]).to be_a String
     expect(json[:data].first[:attributes][:address]).to eq('33 Lilah Ln, Denver, CO 80111')
   end
+
+  it 'sends a specific customer' do
+    Subscription.destroy_all
+    Customer.destroy_all
+    Tea.destroy_all
+
+    customer1 = create(:customer, first_name: 'Lily',
+                                  last_name: 'Potter',
+                                  email: 'magic22@gmail.com',
+                                  address: '300 Arapahoe Ave, Boulder, CO 80302')
+    create_list(:customer, 2)
+
+    headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
+    get "/api/v1/customers/#{customer1.id}", headers: headers
+
+    expect(response).to be_successful
+
+    json = JSON.parse(response.body, symbolize_names: true)
+
+    expect(json[:data].length).to eq(3)
+
+    expect(json[:data][:id]).to be_a String
+    expect(json[:data][:id]).to eq(customer1.id.to_s)
+
+    expect(json[:data][:type]).to be_a String
+    expect(json[:data][:type]).to eq('customer')
+
+    expect(json[:data][:attributes]).to be_a Hash
+    expect(json[:data][:attributes].length).to eq(4)
+
+    expect(json[:data][:attributes][:first_name]).to be_a String
+    expect(json[:data][:attributes][:first_name]).to eq('Lily')
+    expect(json[:data][:attributes][:last_name]).to be_a String
+    expect(json[:data][:attributes][:last_name]).to eq('Potter')
+    expect(json[:data][:attributes][:email]).to be_a String
+    expect(json[:data][:attributes][:email]).to eq('magic22@gmail.com')
+    expect(json[:data][:attributes][:address]).to be_a String
+    expect(json[:data][:attributes][:address]).to eq('300 Arapahoe Ave, Boulder, CO 80302')
+  end
 end
