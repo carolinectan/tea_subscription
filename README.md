@@ -66,6 +66,27 @@ GET http://localhost:3000/api/v1/customers
 }
 ```
 
+### Get One Customer
+Append customer ID to end of URI
+```
+GET http://localhost:3000/api/v1/customers/16
+```
+
+```
+{
+    "data": {
+        "id": "16",
+        "type": "customer",
+        "attributes": {
+            "first_name": "Amanda",
+            "last_name": "Hodkiewicz",
+            "email": "gregg.leffler@powlowski-sanford.net",
+            "address": "242 Becky Path, Wisozkbury, Alabama 20334-7435"
+        }
+    }
+}
+```
+
 ### Get All of a Customer's Subscriptions
 Pass the customer's ID in the params
 
