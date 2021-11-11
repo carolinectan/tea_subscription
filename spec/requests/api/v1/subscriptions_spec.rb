@@ -51,7 +51,7 @@ describe 'customer subscriptions api' do
     tea1 = create(:tea)
 
     headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
-    # default status is "active"
+    # a subscriotion's default status is "active"
     request_body = {  "customer_id": customer1.id,
                 "tea_id": tea1.id,
                 "title": "Sleepy Time",
