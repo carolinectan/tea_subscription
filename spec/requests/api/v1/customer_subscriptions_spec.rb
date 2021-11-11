@@ -16,9 +16,8 @@ describe 'customer subscriptions api' do
     create_list(:subscription, 2, status: 'active', customer: customer1)
     create_list(:subscription, 2, status: 'cancelled', customer: customer1)
 
-    params = { customer: customer1.id }
     headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
-    get '/api/v1/customer_subscriptions', headers: headers, params: params
+    get "/api/v1/customers/#{customer1.id}/subscriptions", headers: headers
 
     expect(response).to be_successful
 
