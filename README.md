@@ -1,13 +1,46 @@
-# TEA SUBSCRIPTION
+# ☕️🫖 TEA SUBSCRIPTION ☕️🫖
 
 Tea Subscription is a Rails only API application, with endpoints to subscribe a customer to a tea subscription, to cancel a customer's tea subscription, and to see all of a customer's subscriptions (active and cancelled).
 
-## Version
-- Rails 5.2.6
-- Ruby 2.7.2
+## Table of Contents
+<!-- - [Technologies and Design Principles](#technologies-and-design-principles) -->
+- [Environment Setup](#environment-setup)
+- [Configuration](#configuration)
+- [Visual Database Schema](#visual-database-schema)
+- [Database Creation](#database-creation)
+- [How to Run the Test Suite](#how-to-run-the-test-suite)
+- [How to Run the Server](#how-to-run-the-server)
+- [Requests and Responses](#requests-and-responses)
+    - [Get All Customers](#get-all-customers)
+    - [Get a Customer](#get-a-customer)
+    - [Get a Customer's Subscriptions](#get-a-customer's-subscriptions)
+    - [Create a Subscription](#create-a-subscription)
+    - [Cancel a Subscription](#cancel-a-subscription)
+- [Contributors](#contributors)
 
-## System dependencies
-- RSpec
+## Environment Setup
+### Ruby 2.7.2
+- Check your Ruby version `ruby -v`
+- If your version is NOT Ruby 2.7.2, you can install Ruby 2.7.2 with `rbenv install 2.7.2`
+- To set the Ruby version for a specific directory and all subdirectories within it,
+```
+cd <repo name>
+rbenv local 2.7.2
+```
+- Double check that your Ruby version is correct after changing it with `ruby -v`
+
+### Rails 5.2.6
+- [Rails](https://guides.rubyonrails.org/v5.0/getting_started.html) is a Gem, and if you are using rbenv, gems are specific to your current Ruby version, so you need to make sure you are on Ruby 2.7.2 before proceeding by following the instructions above.
+- Check your Rails version `rails -v`
+- If you get a message saying rails is not installed or you do not have version 5.2.5, run `gem install rails --version 5.2.5`.
+- Double check that your Ruby version is correct after changing it with `rails -v`
+
+## Configuration
+```
+git clone git@github.com:future-seeds/future-seeds-api.git
+cd <repo name>
+bundle
+```
 
 ## Configuration
 ```
@@ -15,21 +48,23 @@ git clone <ssh>
 bundle
 ```
 
-## Database creation
+## Visual Database Schema
+![Screen Shot 2021-11-08 at 6 59 19 PM](https://user-images.githubusercontent.com/81220681/140837165-3893bc9c-10cd-42df-90bf-a24fedea527f.png)
+
+## Database Creation
 ```
 rails db:{create,migrate,seed}
 ```
 
-## How to run the test suite
+## How to Run the Test Suite
 ```
 bundle exec rspec
 ```
 
-<!-- ## Services (job queues, cache servers, search engines, etc.) -->
-<!-- ## Deployment instructions -->
-
-## Visual Database Schema
-![Screen Shot 2021-11-08 at 6 59 19 PM](https://user-images.githubusercontent.com/81220681/140837165-3893bc9c-10cd-42df-90bf-a24fedea527f.png)
+## How to Run the Server
+```
+rails s
+```
 
 ## Requests and Responses
 
@@ -66,8 +101,9 @@ GET http://localhost:3000/api/v1/customers
     ]
 }
 ```
+[Back to top](#overview)
 
-### Get One Customer
+### Get a Customer
 Append customer ID to end of URI
 ```
 headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
@@ -88,8 +124,9 @@ GET http://localhost:3000/api/v1/customers/16
     }
 }
 ```
+[Back to top](#overview)
 
-### Get One Customer's Subscriptions
+### Get a Customer's Subscriptions
 ```
 headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
 GET http://localhost:3000/api/v1/customers/17/subscriptions
@@ -129,8 +166,9 @@ GET http://localhost:3000/api/v1/customers/17/subscriptions
     ]
 }
 ```
+[Back to top](#overview)
 
-### Create a Subscription for a Customer
+### Create a Subscription
 ```
 headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
 # a subscription's default status is "active"
@@ -162,8 +200,9 @@ post "/api/v1/customers/#{customer1.id}/subscriptions"
     }
 }
 ```
+[Back to top](#overview)
 
-### Cancel a Customer's Subscription
+### Cancel a Subscription
 ```
 headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
 request_body = {
@@ -192,3 +231,9 @@ patch "/api/v1/customers/#{customer1.id}/subscriptions/#{Subscription.last.id}"
     }
 }
 ```
+[Back to top](#overview)
+
+## Contributors
+🙋🏻‍♀ **Caroline Tan**
+- Github: [Caroline Tan](https://github.com/carolinectan)
+- LinkedIn: [Caroline Tan](https://www.linkedin.com/in/carolinectan/)
