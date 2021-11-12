@@ -28,53 +28,56 @@ cd <repo name>
 rbenv local 2.7.2
 ```
 - Double check that your Ruby version is correct after changing it with `ruby -v`
+[Back to top](#overview)
 
 ### Rails 5.2.6
 - [Rails](https://guides.rubyonrails.org/v5.0/getting_started.html) is a Gem, and if you are using rbenv, gems are specific to your current Ruby version, so you need to make sure you are on Ruby 2.7.2 before proceeding by following the instructions above.
 - Check your Rails version `rails -v`
 - If you get a message saying rails is not installed or you do not have version 5.2.5, run `gem install rails --version 5.2.5`.
 - Double check that your Ruby version is correct after changing it with `rails -v`
-
-## Configuration
-```
-git clone git@github.com:future-seeds/future-seeds-api.git
-cd <repo name>
-bundle
-```
+[Back to top](#overview)
 
 ## Configuration
 ```
 git clone <ssh>
+cd <repo_name>
 bundle
 ```
+[Back to top](#overview)
 
 ## Visual Database Schema
 ![Screen Shot 2021-11-08 at 6 59 19 PM](https://user-images.githubusercontent.com/81220681/140837165-3893bc9c-10cd-42df-90bf-a24fedea527f.png)
+[Back to top](#overview)
 
 ## Database Creation
 ```
 rails db:{create,migrate,seed}
 ```
+[Back to top](#overview)
 
 ## How to Run the Test Suite
 ```
 bundle exec rspec
 ```
+[Back to top](#overview)
 
 ## How to Run the Server
 ```
 rails s
 ```
+[Back to top](#overview)
 
 ## Requests and Responses
+Base URL `http://localhost:3000`
+Note: Run `rails s` to start your server.
 
 ### Get All Customers
-```
+```ruby
 headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
-GET http://localhost:3000/api/v1/customers
+GET '/api/v1/customers'
 ```
 
-```
+```json
 {
     "data": [
         {
@@ -105,12 +108,12 @@ GET http://localhost:3000/api/v1/customers
 
 ### Get a Customer
 Append customer ID to end of URI
-```
+```ruby
 headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
-GET http://localhost:3000/api/v1/customers/16
+GET '/api/v1/customers/16'
 ```
 
-```
+```json
 {
     "data": {
         "id": "16",
@@ -127,12 +130,12 @@ GET http://localhost:3000/api/v1/customers/16
 [Back to top](#overview)
 
 ### Get a Customer's Subscriptions
-```
+```ruby
 headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
-GET http://localhost:3000/api/v1/customers/17/subscriptions
+GET '/api/v1/customers/17/subscriptions'
 ```
 
-```
+```json
 {
     "data": [
         {
@@ -169,20 +172,20 @@ GET http://localhost:3000/api/v1/customers/17/subscriptions
 [Back to top](#overview)
 
 ### Create a Subscription
-```
+```ruby
 headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
 # a subscription's default status is "active"
 request_body = {
-    "customer_id": customer1.id,
-    "tea_id": tea1.id,
+    "customer_id": 16,
+    "tea_id": 2,
     "title": "Sleepy Time",
     "price": "6.99",
     "frequency": "monthly",
 }
-post "/api/v1/customers/#{customer1.id}/subscriptions"
+POST '/api/v1/customers/16/subscriptions'
 ```
 
-```
+```json
 {
     "data": {
         "id": "8",
@@ -203,17 +206,17 @@ post "/api/v1/customers/#{customer1.id}/subscriptions"
 [Back to top](#overview)
 
 ### Cancel a Subscription
-```
+```ruby
 headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
 request_body = {
   "customer_id": 16,
   "tea_id": 2,
   "status": 'cancelled'
 }
-patch "/api/v1/customers/#{customer1.id}/subscriptions/#{Subscription.last.id}"
+PATCH '/api/v1/customers/#{customer1.id}/subscriptions/8'
 ```
 
-```
+```json
 {
     "data": {
         "id": "8",
