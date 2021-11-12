@@ -1,4 +1,4 @@
-# 🍵🫖 TEA SUBSCRIPTION 🍵🫖
+# 🫖 TEA SUBSCRIPTION 🫖
 ![pexels-esranur-kalay-7543665-2](https://user-images.githubusercontent.com/81220681/141414032-590976e3-dd70-4cd4-a8ba-aa2766ee01c6.jpg)
 
 ## Overview
