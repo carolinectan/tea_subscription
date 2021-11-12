@@ -248,5 +248,5 @@ PATCH '/api/v1/customers/#{customer1.id}/subscriptions/8'
 
 ## Contributors
 🙋🏻‍♀ **Caroline Tan**
-- Github: [Caroline Tan](https://github.com/carolinectan)
-- LinkedIn: [Caroline Tan](https://www.linkedin.com/in/carolinectan/)
+- [Github](https://github.com/carolinectan)
+- [LinkedIn](https://www.linkedin.com/in/carolinectan/)
