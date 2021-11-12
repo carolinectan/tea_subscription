@@ -53,12 +53,12 @@ describe 'customer subscriptions api' do
     headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
     # a subscription's default status is "active"
     request_body = {
-                      "customer_id": customer1.id,
-                      "tea_id": tea1.id,
-                      "title": "Sleepy Time",
-                      "price": "6.99",
-                      "frequency": "monthly"
-                    }
+      customer_id: customer1.id,
+      tea_id: tea1.id,
+      title: 'Sleepy Time',
+      price: '6.99',
+      frequency: 'monthly'
+    }
     post "/api/v1/customers/#{customer1.id}/subscriptions", headers: headers, params: request_body.to_json
 
     expect(response).to be_successful
@@ -109,21 +109,21 @@ describe 'customer subscriptions api' do
     headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
     # a subscription's default status is "active"
     request_body = {
-                      "customer_id": customer1.id,
-                      "tea_id": tea1.id,
-                      "title": "Sleepy Time",
-                      "price": "6.99",
-                      "frequency": "monthly"
-                    }
+      customer_id: customer1.id,
+      tea_id: tea1.id,
+      title: 'Sleepy Time',
+      price: '6.99',
+      frequency: 'monthly'
+    }
     post "/api/v1/customers/#{customer1.id}/subscriptions", headers: headers, params: request_body.to_json
 
     # Step 2: update a customer's subscription status to 'cancelled'
     headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
     request_body = {
-                      "customer_id": customer1.id,
-                      "tea_id": tea1.id,
-                      "status": "cancelled"
-                    }
+      customer_id: customer1.id,
+      tea_id: tea1.id,
+      status: 'cancelled'
+    }
     patch "/api/v1/customers/#{customer1.id}/subscriptions/#{Subscription.last.id}", headers: headers, params: request_body.to_json
 
     expect(response).to be_successful
