@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe 'customer subscriptions api' do
-  it 'sends a list of customers' do
+  it "sends a list of a customer's subscriptions" do
     Subscription.destroy_all
     Customer.destroy_all
     Tea.destroy_all
