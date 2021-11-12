@@ -1,4 +1,5 @@
 # 🍵🫖 TEA SUBSCRIPTION 🍵🫖
+![pexels-esranur-kalay-7543665-2](https://user-images.githubusercontent.com/81220681/141414032-590976e3-dd70-4cd4-a8ba-aa2766ee01c6.jpg)
 
 ## Overview
 Tea Subscription is a Rails only API application, with endpoints to subscribe a customer to a tea subscription, to cancel a customer's tea subscription, and to see all of a customer's subscriptions (active and cancelled).
