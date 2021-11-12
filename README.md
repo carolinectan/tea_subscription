@@ -35,6 +35,7 @@ bundle exec rspec
 
 ### Get All Customers
 ```
+headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
 GET http://localhost:3000/api/v1/customers
 ```
 
@@ -69,6 +70,7 @@ GET http://localhost:3000/api/v1/customers
 ### Get One Customer
 Append customer ID to end of URI
 ```
+headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
 GET http://localhost:3000/api/v1/customers/16
 ```
 
@@ -89,8 +91,8 @@ GET http://localhost:3000/api/v1/customers/16
 
 ### Get One Customer's Subscriptions
 ```
-GET http://localhost:3000/api/v1/customers/17/subscriptions
 headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
+GET http://localhost:3000/api/v1/customers/17/subscriptions
 ```
 
 ```
@@ -132,14 +134,14 @@ headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
 ```
 headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
 # a subscription's default status is "active"
-request_body = {  "customer_id": customer1.id,
-            "tea_id": tea1.id,
-            "title": "Sleepy Time",
-            "price": "6.99",
-            "frequency": "monthly",
+request_body = {
+    "customer_id": customer1.id,
+    "tea_id": tea1.id,
+    "title": "Sleepy Time",
+    "price": "6.99",
+    "frequency": "monthly",
 }
-
-post "/api/v1/customers/#{customer1.id}/subscriptions", headers: headers, params: request_body.to_json
+post "/api/v1/customers/#{customer1.id}/subscriptions"
 ```
 
 ```
@@ -156,6 +158,36 @@ post "/api/v1/customers/#{customer1.id}/subscriptions", headers: headers, params
             "frequency": "monthly",
             "created_at": "2021-11-12T00:53:37.952Z",
             "updated_at": "2021-11-12T00:53:37.952Z"
+        }
+    }
+}
+```
+
+### Cancel a Customer's Subscription
+```
+headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
+request_body = {
+  "customer_id": 16,
+  "tea_id": 2,
+  "status": 'cancelled'
+}
+patch "/api/v1/customers/#{customer1.id}/subscriptions/#{Subscription.last.id}"
+```
+
+```
+{
+    "data": {
+        "id": "8",
+        "type": "subscription",
+        "attributes": {
+            "customer_id": 16,
+            "tea_id": 2,
+            "title": "Sleepy Time",
+            "price": "6.99",
+            "status": "cancelled",
+            "frequency": "monthly",
+            "created_at": "2021-11-12T00:53:37.952Z",
+            "updated_at": "2021-11-12T04:33:07.233Z"
         }
     }
 }
