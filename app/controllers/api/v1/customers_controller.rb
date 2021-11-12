@@ -11,5 +11,7 @@ class Api::V1::CustomersController < ApplicationController
     customer = Customer.find(params[:id])
 
     render json: CustomerSerializer.new(customer), status: :ok
+  rescue ActiveRecord::RecordNotFound
+    invalid_credentials
   end
 end
