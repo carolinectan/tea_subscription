@@ -274,7 +274,6 @@ describe 'customer subscriptions api' do
         Customer.destroy_all
         Tea.destroy_all
 
-        # Step 1: create a customer's subscription
         customer1 = create(:customer, first_name: 'Jack',
                                       last_name: 'John',
                                       email: 'jackjohn@gmail.com',
