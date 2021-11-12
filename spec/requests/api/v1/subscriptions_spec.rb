@@ -38,7 +38,7 @@ describe 'customer subscriptions api' do
     expect(json[:data].first[:attributes][:updated_at]).to be_a String
   end
 
-  it 'creates a subscription for a customer' do
+  it 'creates an active subscription for a customer' do
     Subscription.destroy_all
     Customer.destroy_all
     Tea.destroy_all
@@ -52,12 +52,13 @@ describe 'customer subscriptions api' do
 
     headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
     # a subscription's default status is "active"
-    request_body = {  "customer_id": customer1.id,
-                "tea_id": tea1.id,
-                "title": "Sleepy Time",
-                "price": "6.99",
-                "frequency": "monthly",
- }
+    request_body = {
+                      "customer_id": customer1.id,
+                      "tea_id": tea1.id,
+                      "title": "Sleepy Time",
+                      "price": "6.99",
+                      "frequency": "monthly"
+                    }
     post "/api/v1/customers/#{customer1.id}/subscriptions", headers: headers, params: request_body.to_json
 
     expect(response).to be_successful
@@ -86,6 +87,71 @@ describe 'customer subscriptions api' do
     expect(json[:data][:attributes][:price]).to eq('6.99')
     expect(json[:data][:attributes][:status]).to be_a String
     expect(json[:data][:attributes][:status]).to eq('active')
+    expect(json[:data][:attributes][:frequency]).to be_a String
+    expect(json[:data][:attributes][:frequency]).to eq('monthly')
+    expect(json[:data][:attributes][:created_at]).to be_a String
+    expect(json[:data][:attributes][:updated_at]).to be_a String
+  end
+
+  it "updates a customer's subscription's status to cancelled" do
+    Subscription.destroy_all
+    Customer.destroy_all
+    Tea.destroy_all
+
+    # Step 1: create a customer's subscription
+    customer1 = create(:customer, first_name: 'Jack',
+                                  last_name: 'John',
+                                  email: 'jackjohn@gmail.com',
+                                  address: '1212 30th St, Boulder, CO 80302')
+    create_list(:customer, 2)
+    tea1 = create(:tea)
+
+    headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
+    # a subscription's default status is "active"
+    request_body = {
+                      "customer_id": customer1.id,
+                      "tea_id": tea1.id,
+                      "title": "Sleepy Time",
+                      "price": "6.99",
+                      "frequency": "monthly"
+                    }
+    post "/api/v1/customers/#{customer1.id}/subscriptions", headers: headers, params: request_body.to_json
+
+    # Step 2: update a customer's subscription status to 'cancelled'
+    headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
+    request_body = {
+                      "customer_id": customer1.id,
+                      "tea_id": tea1.id,
+                      "status": "cancelled"
+                    }
+    patch "/api/v1/customers/#{customer1.id}/subscriptions/#{Subscription.last.id}", headers: headers, params: request_body.to_json
+
+    expect(response).to be_successful
+    expect(response.status).to eq(200)
+
+    json = JSON.parse(response.body, symbolize_names: true)
+
+    expect(json[:data].length).to eq(3)
+
+    expect(json[:data][:id]).to be_a String
+    expect(json[:data][:id]).to eq(Subscription.last.id.to_s)
+
+    expect(json[:data][:type]).to be_a String
+    expect(json[:data][:type]).to eq('subscription')
+
+    expect(json[:data][:attributes]).to be_a Hash
+    expect(json[:data][:attributes].length).to eq(8)
+
+    expect(json[:data][:attributes][:customer_id]).to be_an Integer
+    expect(json[:data][:attributes][:customer_id]).to eq(customer1.id)
+    expect(json[:data][:attributes][:tea_id]).to be_an Integer
+    expect(json[:data][:attributes][:tea_id]).to eq(tea1.id)
+    expect(json[:data][:attributes][:title]).to be_a String
+    expect(json[:data][:attributes][:title]).to eq('Sleepy Time')
+    expect(json[:data][:attributes][:price]).to be_a String
+    expect(json[:data][:attributes][:price]).to eq('6.99')
+    expect(json[:data][:attributes][:status]).to be_a String
+    expect(json[:data][:attributes][:status]).to eq('cancelled') # status updated to cancelled :)
     expect(json[:data][:attributes][:frequency]).to be_a String
     expect(json[:data][:attributes][:frequency]).to eq('monthly')
     expect(json[:data][:attributes][:created_at]).to be_a String
