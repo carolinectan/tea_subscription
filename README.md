@@ -76,6 +76,7 @@ Note: Run `rails s` to start your server.
 ### Get All Customers
 ```ruby
 headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
+
 GET '/api/v1/customers'
 ```
 
@@ -112,6 +113,7 @@ GET '/api/v1/customers'
 Append customer ID to end of URI
 ```ruby
 headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
+
 GET '/api/v1/customers/16'
 ```
 
@@ -134,6 +136,7 @@ GET '/api/v1/customers/16'
 ### Get a Customer's Subscriptions
 ```ruby
 headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
+
 GET '/api/v1/customers/17/subscriptions'
 ```
 
@@ -184,6 +187,7 @@ request_body = {
     "price": "6.99",
     "frequency": "monthly",
 }
+
 POST '/api/v1/customers/16/subscriptions'
 ```
 
@@ -215,6 +219,7 @@ request_body = {
   "tea_id": 2,
   "status": "cancelled"
 }
+
 PATCH '/api/v1/customers/#{customer1.id}/subscriptions/8'
 ```
 
