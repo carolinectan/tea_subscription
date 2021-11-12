@@ -43,7 +43,7 @@ describe 'customer subscriptions api' do
     end
 
     describe 'sad path' do
-      it "throws an error if customer is not found" do
+      it 'throws an error if customer is not found' do
         Subscription.destroy_all
         Customer.destroy_all
         Tea.destroy_all
@@ -57,7 +57,7 @@ describe 'customer subscriptions api' do
         create(:subscription, status: 'cancelled', customer: customer1)
 
         headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
-        get "/api/v1/customers/99999/subscriptions", headers: headers
+        get '/api/v1/customers/99999/subscriptions', headers: headers
 
         expect(response).to_not be_successful
         expect(response.status).to eq(400)
@@ -139,11 +139,11 @@ describe 'customer subscriptions api' do
         Tea.destroy_all
 
         customer1 = create(:customer, first_name: 'Lily',
-          last_name: 'James',
-          email: 'skiguy89@gmail.com',
-          address: '654 Potter Road, Aspen, CO 81611')
-          create_list(:customer, 2)
-          tea1 = create(:tea)
+                                      last_name: 'James',
+                                      email: 'skiguy89@gmail.com',
+                                      address: '654 Potter Road, Aspen, CO 81611')
+        create_list(:customer, 2)
+        tea1 = create(:tea)
 
         headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
 
@@ -173,11 +173,11 @@ describe 'customer subscriptions api' do
         Tea.destroy_all
 
         customer1 = create(:customer, first_name: 'Lily',
-          last_name: 'James',
-          email: 'skiguy89@gmail.com',
-          address: '654 Potter Road, Aspen, CO 81611')
-          create_list(:customer, 2)
-          tea1 = create(:tea)
+                                      last_name: 'James',
+                                      email: 'skiguy89@gmail.com',
+                                      address: '654 Potter Road, Aspen, CO 81611')
+        create_list(:customer, 2)
+        tea1 = create(:tea)
 
         headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
 
@@ -187,7 +187,7 @@ describe 'customer subscriptions api' do
           title: 'Sleepy Time'
           # this examples does not include required attributes for price and frequency
         }
-        post "/api/v1/customers/88888/subscriptions", headers: headers, params: request_body.to_json
+        post '/api/v1/customers/88888/subscriptions', headers: headers, params: request_body.to_json
 
         expect(response).to_not be_successful
         expect(response.status).to eq(400)
@@ -273,17 +273,17 @@ describe 'customer subscriptions api' do
     end
 
     describe 'sad path' do
-      it "throws an error if the subscription does not exist" do
+      it 'throws an error if the subscription does not exist' do
         Subscription.destroy_all
         Customer.destroy_all
         Tea.destroy_all
 
         # Step 1: create a customer's subscription
         customer1 = create(:customer, first_name: 'Jack',
-          last_name: 'John',
-          email: 'jackjohn@gmail.com',
-          address: '1212 30th St, Boulder, CO 80302')
-          create_list(:customer, 2)
+                                      last_name: 'John',
+                                      email: 'jackjohn@gmail.com',
+                                      address: '1212 30th St, Boulder, CO 80302')
+        create_list(:customer, 2)
         tea1 = create(:tea)
 
         headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }

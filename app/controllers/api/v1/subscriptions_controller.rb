@@ -5,7 +5,6 @@ class Api::V1::SubscriptionsController < ApplicationController
     customer_subscriptions = Customer.find(params[:customer_id]).subscriptions
 
     render json: SubscriptionSerializer.new(customer_subscriptions), status: :ok
-
   rescue ActiveRecord::RecordNotFound
     invalid_credentials
   end
@@ -19,8 +18,7 @@ class Api::V1::SubscriptionsController < ApplicationController
         message: 'Your request could not be completed.',
         errors: ['All attributes are required.']
       }, status: :bad_request
-    elsif
-      subscription = Subscription.new(subscription_params)
+    elsif subscription = Subscription.new(subscription_params)
 
       if subscription.save
         render json: SubscriptionSerializer.new(subscription), status: :created
@@ -28,7 +26,6 @@ class Api::V1::SubscriptionsController < ApplicationController
         render json: {}, status: :bad_request
       end
     end
-
   rescue ActiveRecord::RecordNotFound
     invalid_credentials
   end
@@ -38,7 +35,6 @@ class Api::V1::SubscriptionsController < ApplicationController
     subscription.update!(status: params[:status])
 
     render json: SubscriptionSerializer.new(subscription), status: :ok
-
   rescue ActiveRecord::RecordNotFound
     invalid_credentials
   end
