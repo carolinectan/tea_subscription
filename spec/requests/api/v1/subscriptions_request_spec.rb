@@ -148,6 +148,7 @@ describe 'customer subscriptions api' do
         headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
 
         request_body = {
+          customer_id: customer1.id,
           tea_id: tea1.id,
           title: 'Sleepy Time'
           # this examples does not include required attributes for customer_id, price, and frequency
@@ -172,22 +173,17 @@ describe 'customer subscriptions api' do
         Customer.destroy_all
         Tea.destroy_all
 
-        customer1 = create(:customer, first_name: 'Lily',
-                                      last_name: 'James',
-                                      email: 'skiguy89@gmail.com',
-                                      address: '654 Potter Road, Aspen, CO 81611')
-        create_list(:customer, 2)
         tea1 = create(:tea)
 
         headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
 
         request_body = {
-          customer_id: customer1.id,
+          customer_id: 88888,
           tea_id: tea1.id,
           title: 'Sleepy Time'
           # this examples does not include required attributes for price and frequency
         }
-        post '/api/v1/customers/88888/subscriptions', headers: headers, params: request_body.to_json
+        post "/api/v1/customers/#{request_body[:customer_id]}/subscriptions", headers: headers, params: request_body.to_json
 
         expect(response).to_not be_successful
         expect(response.status).to eq(400)
@@ -286,18 +282,6 @@ describe 'customer subscriptions api' do
         create_list(:customer, 2)
         tea1 = create(:tea)
 
-        headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
-        # a subscription's default status is "active"
-        request_body = {
-          customer_id: customer1.id,
-          tea_id: tea1.id,
-          title: 'Sleepy Time',
-          price: '6.99',
-          frequency: 'monthly'
-        }
-        post "/api/v1/customers/#{customer1.id}/subscriptions", headers: headers, params: request_body.to_json
-
-        # Step 2: update a customer's subscription status to 'cancelled'
         headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
         request_body = {
           customer_id: customer1.id,

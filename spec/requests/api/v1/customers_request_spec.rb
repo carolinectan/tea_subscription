@@ -90,14 +90,8 @@ describe 'customers api' do
         Customer.destroy_all
         Tea.destroy_all
 
-        customer1 = create(:customer, first_name: 'Lily',
-                                      last_name: 'Potter',
-                                      email: 'magic22@gmail.com',
-                                      address: '300 Arapahoe Ave, Boulder, CO 80302')
-        create_list(:customer, 2)
-
         headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
-        get "/api/v1/customers/7777", headers: headers
+        get '/api/v1/customers/7777', headers: headers
 
         expect(response).to_not be_successful
         expect(response.status).to eq(400)
