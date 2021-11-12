@@ -178,7 +178,7 @@ describe 'customer subscriptions api' do
         headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
 
         request_body = {
-          customer_id: 88888,
+          customer_id: 88_888,
           tea_id: tea1.id,
           title: 'Sleepy Time'
           # this examples does not include required attributes for price and frequency
