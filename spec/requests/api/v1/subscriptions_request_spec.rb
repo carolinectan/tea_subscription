@@ -167,7 +167,7 @@ describe 'customer subscriptions api' do
         expect(json[:errors].first).to eq('All attributes are required.')
       end
 
-      it 'throws an error if user does not exist' do
+      it 'throws an error if customer does not exist' do
         Subscription.destroy_all
         Customer.destroy_all
         Tea.destroy_all
