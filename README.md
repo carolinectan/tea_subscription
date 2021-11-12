@@ -14,7 +14,7 @@ Tea Subscription is a Rails only API application, with endpoints to subscribe a 
 - [Requests and Responses](#requests-and-responses)
     - [Get All Customers](#get-all-customers)
     - [Get a Customer](#get-a-customer)
-    - [Get a Customer's Subscriptions](#get-a-customer's-subscriptions)
+    - [Get a Customer's Subscriptions](#get-a-customers-subscriptions)
     - [Create a Subscription](#create-a-subscription)
     - [Cancel a Subscription](#cancel-a-subscription)
 - [Contributors](#contributors)
