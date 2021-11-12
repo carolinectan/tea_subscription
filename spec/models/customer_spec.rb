@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Customer, type: :model do
@@ -32,7 +34,7 @@ RSpec.describe Customer, type: :model do
   # end
 
   describe 'factory bot creation' do
-    before(:all) do
+    before(:each) do
       @customer = create(:customer)
     end
 
