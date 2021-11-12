@@ -212,7 +212,7 @@ headers = { CONTENT_TYPE: 'application/json', Accept: 'application/json' }
 request_body = {
   "customer_id": 16,
   "tea_id": 2,
-  "status": 'cancelled'
+  "status": "cancelled"
 }
 PATCH '/api/v1/customers/#{customer1.id}/subscriptions/8'
 ```
