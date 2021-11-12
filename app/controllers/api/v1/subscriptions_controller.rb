@@ -10,21 +10,14 @@ class Api::V1::SubscriptionsController < ApplicationController
   end
 
   def create
-    customer = Customer.find(params[:customer_id])
-    tea = Tea.find(params[:tea_id])
+    Customer.find(params[:customer_id])
+    Tea.find(params[:tea_id])
 
     if !params[:title] || !params[:price] || !params[:frequency]
-      render json: {
-        message: 'Your request could not be completed.',
-        errors: ['All attributes are required.']
-      }, status: :bad_request
-    elsif subscription = Subscription.new(subscription_params)
-
-      if subscription.save
-        render json: SubscriptionSerializer.new(subscription), status: :created
-      else
-        render json: {}, status: :bad_request
-      end
+      missing_attributes
+    else
+      subscription = Subscription.new(subscription_params)
+      render json: SubscriptionSerializer.new(subscription), status: :created if subscription.save
     end
   rescue ActiveRecord::RecordNotFound
     invalid_credentials
