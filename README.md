@@ -1,5 +1,5 @@
 # 🫖 TEA SUBSCRIPTION 🫖
-![pexels-esranur-kalay-7543665-2](https://user-images.githubusercontent.com/81220681/141414032-590976e3-dd70-4cd4-a8ba-aa2766ee01c6.jpg)
+![tea-and-tea-kettle-pexels-esranur-kalay-7543665-2](https://user-images.githubusercontent.com/81220681/141414032-590976e3-dd70-4cd4-a8ba-aa2766ee01c6.jpg)
 
 ## Overview
 Tea Subscription is a Rails only API application, with endpoints to subscribe a customer to a tea subscription, to cancel a customer's tea subscription, and to see all of a customer's subscriptions (active and cancelled).
@@ -30,6 +30,7 @@ cd <repo name>
 rbenv local 2.7.2
 ```
 - Double check that your Ruby version is correct after changing it with `ruby -v`
+
 [Back to top](#overview)
 
 ### Rails 5.2.6
@@ -37,6 +38,7 @@ rbenv local 2.7.2
 - Check your Rails version `rails -v`
 - If you get a message saying rails is not installed or you do not have version 5.2.5, run `gem install rails --version 5.2.5`.
 - Double check that your Ruby version is correct after changing it with `rails -v`
+
 [Back to top](#overview)
 
 ## Configuration
@@ -49,6 +51,7 @@ bundle
 
 ## Visual Database Schema
 ![Screen Shot 2021-11-08 at 6 59 19 PM](https://user-images.githubusercontent.com/81220681/140837165-3893bc9c-10cd-42df-90bf-a24fedea527f.png)
+
 [Back to top](#overview)
 
 ## Database Creation
