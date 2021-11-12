@@ -85,7 +85,7 @@ describe 'customers api' do
     end
 
     describe 'sad path' do
-      it 'throw an error if customer does not exist' do
+      it 'throw an error if customer is not found' do
         Subscription.destroy_all
         Customer.destroy_all
         Tea.destroy_all

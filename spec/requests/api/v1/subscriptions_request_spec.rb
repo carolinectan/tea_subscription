@@ -168,7 +168,7 @@ describe 'customer subscriptions api' do
         expect(json[:errors].first).to eq('All attributes are required.')
       end
 
-      it 'throws an error if customer does not exist' do
+      it 'throws an error if customer is not found' do
         Subscription.destroy_all
         Customer.destroy_all
         Tea.destroy_all
@@ -269,7 +269,7 @@ describe 'customer subscriptions api' do
     end
 
     describe 'sad path' do
-      it 'throws an error if the subscription does not exist' do
+      it 'throws an error if the subscription is not found' do
         Subscription.destroy_all
         Customer.destroy_all
         Tea.destroy_all
