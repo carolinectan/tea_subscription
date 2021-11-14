@@ -5,22 +5,14 @@ class Api::V1::SubscriptionsController < ApplicationController
     customer_subscriptions = Customer.find(params[:customer_id]).subscriptions
 
     render json: SubscriptionSerializer.new(customer_subscriptions), status: :ok
-  rescue ActiveRecord::RecordNotFound
-    invalid_credentials
   end
 
   def create
     Customer.find(params[:customer_id])
     Tea.find(params[:tea_id])
+    subscription = Subscription.create!(subscription_params)
 
-    if !params[:title] || !params[:price] || !params[:frequency]
-      missing_attributes
-    else
-      subscription = Subscription.new(subscription_params)
-      render json: SubscriptionSerializer.new(subscription), status: :created if subscription.save
-    end
-  rescue ActiveRecord::RecordNotFound
-    invalid_credentials
+    render json: SubscriptionSerializer.new(subscription), status: :created
   end
 
   def update
@@ -28,8 +20,6 @@ class Api::V1::SubscriptionsController < ApplicationController
     subscription.update!(status: params[:status])
 
     render json: SubscriptionSerializer.new(subscription), status: :ok
-  rescue ActiveRecord::RecordNotFound
-    invalid_credentials
   end
 
   private

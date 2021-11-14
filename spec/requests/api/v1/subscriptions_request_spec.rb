@@ -60,16 +60,16 @@ describe 'customer subscriptions api' do
         get '/api/v1/customers/99999/subscriptions', headers: headers
 
         expect(response).to_not be_successful
-        expect(response.status).to eq(400)
+        expect(response.status).to eq(404)
 
         json = JSON.parse(response.body, symbolize_names: true)
 
         expect(json.length).to eq(2)
 
         expect(json[:message]).to be_a String
-        expect(json[:message]).to eq('Your request could not be completed.')
+        expect(json[:message]).to eq('your query could not be completed')
         expect(json[:errors]).to be_an Array
-        expect(json[:errors].first).to eq('Invalid credentials.')
+        expect(json[:errors].first).to eq("Couldn't find Customer with 'id'=99999")
       end
     end
   end
@@ -156,16 +156,16 @@ describe 'customer subscriptions api' do
         post "/api/v1/customers/#{customer1.id}/subscriptions", headers: headers, params: request_body.to_json
 
         expect(response).to_not be_successful
-        expect(response.status).to eq(400)
+        expect(response.status).to eq(422)
 
         json = JSON.parse(response.body, symbolize_names: true)
 
         expect(json.length).to eq(2)
 
         expect(json[:message]).to be_a String
-        expect(json[:message]).to eq('Your request could not be completed.')
+        expect(json[:message]).to eq('your record could not be saved')
         expect(json[:errors]).to be_an Array
-        expect(json[:errors].first).to eq('All attributes are required.')
+        expect(json[:errors].first).to eq("Price can't be blank")
       end
 
       it 'throws an error if customer is not found' do
@@ -186,16 +186,16 @@ describe 'customer subscriptions api' do
         post "/api/v1/customers/#{request_body[:customer_id]}/subscriptions", headers: headers, params: request_body.to_json
 
         expect(response).to_not be_successful
-        expect(response.status).to eq(400)
+        expect(response.status).to eq(404)
 
         json = JSON.parse(response.body, symbolize_names: true)
 
         expect(json.length).to eq(2)
 
         expect(json[:message]).to be_a String
-        expect(json[:message]).to eq('Your request could not be completed.')
+        expect(json[:message]).to eq('your query could not be completed')
         expect(json[:errors]).to be_an Array
-        expect(json[:errors].first).to eq('Invalid credentials.')
+        expect(json[:errors].first).to eq("Couldn't find Customer with 'id'=88888")
       end
     end
   end
@@ -290,16 +290,16 @@ describe 'customer subscriptions api' do
         patch "/api/v1/customers/#{customer1.id}/subscriptions/999999", headers: headers, params: request_body.to_json
 
         expect(response).to_not be_successful
-        expect(response.status).to eq(400)
+        expect(response.status).to eq(404)
 
         json = JSON.parse(response.body, symbolize_names: true)
 
         expect(json.length).to eq(2)
 
         expect(json[:message]).to be_a String
-        expect(json[:message]).to eq('Your request could not be completed.')
+        expect(json[:message]).to eq('your query could not be completed')
         expect(json[:errors]).to be_an Array
-        expect(json[:errors].first).to eq('Invalid credentials.')
+        expect(json[:errors].first).to eq("Couldn't find Subscription with 'id'=999999")
       end
     end
   end
