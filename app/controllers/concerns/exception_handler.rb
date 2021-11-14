@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # See spec/concerns/response.rb for #json_response helper.
 module ExceptionHandler
   extend ActiveSupport::Concern
